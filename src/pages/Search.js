@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import SingleContent from '../comps/SingleContent';
 import CustomPagination from '../comps/CustomPagination';
@@ -25,7 +25,7 @@ const Search = () => {
       },
    });
 
-   const fetchSearch = async () => {
+   const fetchSearch = useCallback(async () => {
       const { data } = await axios.get(
          `https://api.themoviedb.org/3/search/${
             type ? 'tv' : 'movie'
@@ -37,11 +37,11 @@ const Search = () => {
       setContent(data.results);
       setNumOfPages(data.total_pages);
       setSearchText('');
-   };
+   }, [page, searchText, type]);
 
    useEffect(() => {
       fetchSearch();
-   }, [type, page]);
+   }, [type, page, fetchSearch]);
 
    return (
       <div>

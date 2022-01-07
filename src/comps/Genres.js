@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 
 const Genres = ({
    selectedGenres,
